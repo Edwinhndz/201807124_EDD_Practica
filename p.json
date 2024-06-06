@@ -1,0 +1,23 @@
+[
+    {
+        "nombre": "John Dee",
+        "nacionalidad": "Estados Unidos",
+        "numero_pasaporte": "A12345678",
+        "vuelo" : "A100",
+        "asiento" : "12",
+        "destino" : "New York",
+        "origen" : "Los Angeles",
+        "equipane_facurado" : 2
+
+    },
+    {
+        "nombre": "Jane Smith",
+        "nacionalidad": "Reino Unido",
+        "numero_pasaporte": "B3543278",
+        "vuelo" : "A200",
+        "asiento" : "05",
+        "destino" : "Londres",
+        "origen" : "Paris",
+        "equipane_facurado" : 1
+    }
+]
