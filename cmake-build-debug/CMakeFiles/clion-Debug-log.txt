@@ -1,0 +1,13 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S "/Users/antares2805/Desktop/EDD lab/201807124_EDD_Practica/201807124_EDD_Practica" -B "/Users/antares2805/Desktop/EDD lab/201807124_EDD_Practica/201807124_EDD_Practica/cmake-build-debug"
+-- Configuring done (0.0s)
+CMake Error at CMakeLists.txt:8 (add_executable):
+  Cannot find source file:
+
+    tempCodeRunnerFile.cpp
+
+
+CMake Error at CMakeLists.txt:8 (add_executable):
+  No SOURCES given to target: 201807124_EDD_Practica
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

@@ -1,12 +1,16 @@
 // g++ main.cpp -o main
-#include "json.hpp"
+
 #include <iostream>
 #include <string>
 #include "Pasajeros.h"
 #include <fstream>
+
+#include "json.hpp"
+
+void CargaPasajeros();
+
 using json = nlohmann::json;
 
-// #include "NodoP.cpp"
 
 int main()
 {
@@ -88,6 +92,7 @@ void CargaPasajeros()
         cout << "Nombre: " << pasajero["nombre"] << endl;
         cout << "Nacionalidad: " << pasajero["nacionalidad"] << endl;
         cout << "Numero de pasaporte: " << pasajero["numero_de_pasaporte"] << endl;
+
         cout << "Vuelo: " << pasajero["vuelo"] << endl;
         cout << "Asiento: " << pasajero["asiento"] << endl;
         cout << "Destino: " << pasajero["destino"] << endl;
@@ -96,3 +101,6 @@ void CargaPasajeros()
         cout << "-------------------------" << endl;
     }
 }
+
+
+//g++ -std=c++11 -o ejec main.cpp

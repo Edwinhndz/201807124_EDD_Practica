@@ -1,0 +1,3 @@
+/Users/antares2805/Desktop/EDD lab/201807124_EDD_Practica/201807124_EDD_Practica/cmake-build-debug/CMakeFiles/201807124_EDD_Practica.dir
+/Users/antares2805/Desktop/EDD lab/201807124_EDD_Practica/201807124_EDD_Practica/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/antares2805/Desktop/EDD lab/201807124_EDD_Practica/201807124_EDD_Practica/cmake-build-debug/CMakeFiles/rebuild_cache.dir
