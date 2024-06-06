@@ -7,70 +7,12 @@
 
 #include "json.hpp"
 
-void CargaPasajeros();
 
 using json = nlohmann::json;
 
 
-int main()
-{
-    int choice;
-    int ej;
-    Cola *cola = new Cola();
-    
 
-    do
-    {
-        std::cout << "Menu:" << std::endl;
-        std::cout << "1. Carga de aviones" << std::endl;
-        std::cout << "2. Carga de pasajeros" << std::endl;
-        std::cout << "3. Carga de movimientos" << std::endl;
-        std::cout << "4. Consultar pasajero" << std::endl;
-        std::cout << "5. Visualizar reportes" << std::endl;
-        std::cout << "6. Salir" << std::endl;
-        std::cout << "Elije una opcion (1-6): ";
-        std::cin >> choice;
-        std::cout << std::endl;
-        switch (choice)
-        {
-        case 1:
-            std::cout << "Carga de aviones" << std::endl;
-            std::cout << "Agergar nodo" << std::endl;
-            CargaPasajeros();
-            //std::cin >> ej;
-            //cola->insertarInicio(ej);
-            break;
-        case 2:
-            // Code for option 2
-            break;
-        case 3:
-            // Code for option 3
-            break;
-        case 4:
-            // Code for option 4
-            break;
-        case 5:
-            // Code for option 5
-            std::cout << "Visualizar reportes" << std::endl;
-            std::cout << std::endl;
-            cola->visualizarLista();
-            break;
-        case 6:
-            // Code for option 6
-            break;
-        default:
-
-            std::cout << "Elija una opcion valida." << std::endl;
-            std::cout << std::endl;
-            break;
-        }
-
-    } while (choice != 6);
-
-    return 0;
-}
-
-void CargaPasajeros()
+void CargaPasajeros(Cola *cola)
 {
     std::cout << "SELECCIONASTE LA OPCION PARA LA CARGAR DE AVIONES " << endl;
 
@@ -99,8 +41,79 @@ void CargaPasajeros()
         cout << "Origen: " << pasajero["origen"] << endl;
         cout << "Equipaje facturado: " << pasajero["equipaje_facturado"] << endl;
         cout << "-------------------------" << endl;
+        cola->insertarInicio(cola->getSize(), pasajero["nombre"], pasajero["nacionalidad"], pasajero["numero_de_pasaporte"], 
+        pasajero["vuelo"], pasajero["asiento"], pasajero["destino"], pasajero["origen"], pasajero["equipaje_facturado"]);
     }
 }
+
+int main()
+{
+    int choice;
+    int ej;
+    Cola *cola = new Cola();
+    
+
+    do
+    {
+        std::cout << "Menu:" << std::endl;
+        std::cout << "1. Carga de aviones" << std::endl;
+        std::cout << "2. Carga de pasajeros" << std::endl;
+        std::cout << "3. Carga de movimientos" << std::endl;
+        std::cout << "4. Consultar pasajero" << std::endl;
+        std::cout << "5. Visualizar reportes" << std::endl;
+        std::cout << "6. Salir" << std::endl;
+        std::cout << "Elije una opcion (1-6): ";
+        std::cin >> choice;
+        std::cout << std::endl;
+        switch (choice)
+        {
+        case 1:
+            std::cout << "Carga de aviones" << std::endl;
+            std::cout << "Agergar nodo" << std::endl;
+
+             
+
+            CargaPasajeros(cola);
+            //std::cin >> ej;
+            //cola->insertarInicio(ej);
+            break;
+        case 2:
+            // Code for option 2
+            cout << "Carga de pasajeros" << endl;
+
+
+            
+
+
+            break;
+        case 3:
+            // Code for option 3
+            break;
+        case 4:
+            // Code for option 4
+            break;
+        case 5:
+            // Code for option 5
+            std::cout << "Visualizar reportes" << std::endl;
+            std::cout << std::endl;
+            cola->visualizarLista();
+            break;
+        case 6:
+            // Code for option 6
+            break;
+        default:
+
+            std::cout << "Elija una opcion valida." << std::endl;
+            std::cout << std::endl;
+            break;
+        }
+
+    } while (choice != 6);
+
+    return 0;
+}
+
+
 
 
 //g++ -std=c++11 -o ejec main.cpp

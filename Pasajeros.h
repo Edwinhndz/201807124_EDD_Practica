@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 #include "NodoPasajero.h"
 
@@ -7,14 +8,16 @@ class Cola
 private:
     /* NECESITAMOS UNA REFERENCIA DEL PRIMER Y ÚLTIMO NODO DE LA LISTA */
     Nodo *primero, *ultimo;
+    int size=0;
 public:
     Cola(/* args */);
     bool estaVacia();
-    void insertarInicio(int dato);
+    void insertarInicio(int dato, string name, string nacio, string pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje);
     void insertarFinal(int dato);
     void eliminarInicio();
     void eliminarFinal();
     void visualizarLista();
+    int getSize();
     ~Cola();
 };
 
@@ -28,9 +31,21 @@ bool Cola::estaVacia()
     return (primero == nullptr) && (ultimo == nullptr);
 }
 
-void Cola::insertarInicio(int dato)
+void Cola::insertarInicio(int dato, string name, string nacio, string pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje)
 {
+
+
     Nodo *nuevo = new Nodo(dato); //Se crea el nuevo nodo
+     
+    nuevo->setNombre(name);
+    nuevo->setNacionalidad(nacio);
+    nuevo->setPasaporte(pasaporte);
+    nuevo->setVuelo(vuelo);
+    nuevo->setAsiento(asiento);
+    nuevo->setDestino(destino);
+    nuevo->setOrigen(origen);
+    nuevo->setEquipaje(equipaje);
+
     if (Cola::estaVacia())
     {
         /* code */
@@ -41,6 +56,7 @@ void Cola::insertarInicio(int dato)
         nuevo->setSiguiente(primero); //Se enlaza el nuevo nodo al primero
         primero = nuevo; //Se verifica que el nodo creado sea el primero
     }
+    Cola::size++;
     
 }
 
@@ -94,18 +110,23 @@ void Cola::visualizarLista()
     }
     else
     {
-        int nodoDato;
+        string nodoDato;
         Nodo *actual = primero;
         while (actual != nullptr)
         {
             /* code */
-            nodoDato = actual->getDato();
-            cout << nodoDato << endl;
+            nodoDato = actual->getNombre();
+            cout << "nombre: " << nodoDato << " Nac.:"<< actual->getNacionalidad() << " Asiento:"<< actual->getAsiento() <<
+            " Passaport:" << actual->getPasaporte() <<  " Vuelo: "<< actual->getVuelo() << endl;
             actual = actual->getSiguiente();
         }
         
     }
     
+}
+
+int Cola::getSize(){
+    return size;
 }
 
 Cola::~Cola()
