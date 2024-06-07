@@ -31,7 +31,8 @@ bool Cola::estaVacia()
     return (primero == nullptr) && (ultimo == nullptr);
 }
 
-void Cola::insertarInicio(int dato, string name, string nacio, string pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje)
+void Cola::insertarInicio(int dato, string name, string nacio,
+ string pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje)
 {
 
 
