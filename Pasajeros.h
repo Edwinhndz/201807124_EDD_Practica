@@ -7,12 +7,13 @@ class Cola
 {
 private:
     /* NECESITAMOS UNA REFERENCIA DEL PRIMER Y ÚLTIMO NODO DE LA LISTA */
-    Nodo *primero, *ultimo;
+    Nodo *primero; 
+    Nodo *ultimo;
     int size=0;
 public:
     Cola(/* args */);
     bool estaVacia();
-    void insertarInicio(int dato, string name, string nacio, string pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje);
+    void insertarInicio(int dato, string name, string nacio, string pasaporte, string vuelo, int asiento, string destino, string origen, int equipaje);
     void insertarFinal(int dato);
     void eliminarInicio();
     void eliminarFinal();
@@ -32,7 +33,7 @@ bool Cola::estaVacia()
 }
 
 void Cola::insertarInicio(int dato, string name, string nacio,
- string pasaporte, string vuelo, string asiento, string destino, string origen, int equipaje)
+ string pasaporte, string vuelo, int asiento, string destino, string origen, int equipaje)
 {
 
 
@@ -133,3 +134,5 @@ int Cola::getSize(){
 Cola::~Cola()
 {
 }
+
+

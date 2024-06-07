@@ -11,7 +11,7 @@ private:
     string nacionalidad;
     string pasaporte;
     string vuelo;
-    string asiento;
+    int asiento;
     string destino;
     string origen;
     int equipaje;
@@ -25,22 +25,23 @@ public:
     int getEquipaje();
     string getNombre();
     void setNombre(string nombre);
+    void setEquipaje(int equipaje);
+
+    void setDato(int dato);
     string getNacionalidad();
     void setNacionalidad(string nacionalidad);
     string getPasaporte();
     void setPasaporte(string pasaporte);
     string getVuelo();
     void setVuelo(string vuelo);
-    string getAsiento();
-    void setAsiento(string asiento);
+    int getAsiento();
+    void setAsiento(int asiento);
     string getDestino();
     void setDestino(string destino);
     string getOrigen();
     void setOrigen(string origen);
-    void setEquipaje(int equipaje);
-    
 
-    void setDato(int dato);
+
     ~Nodo();
 };
 
@@ -62,9 +63,17 @@ int Nodo::getDato(){
     return this->dato;
 }
 
+void Nodo::setDato(int dato){
+    this->dato = dato;
+}
+
 int Nodo::getEquipaje(){
     return this->equipaje;
 }
+
+ void Nodo::setEquipaje(int equipaje){
+    this->equipaje = equipaje;
+ }
 
 string Nodo::getNombre(){
     return this->nombre;
@@ -98,11 +107,11 @@ void Nodo::setVuelo(string vuelo){
     this->vuelo = vuelo;
 }
 
-string Nodo::getAsiento(){
+int Nodo::getAsiento(){
     return this->asiento;
 }
 
-void Nodo::setAsiento(string asiento){
+void Nodo::setAsiento(int asiento){
     this->asiento = asiento;
 }
 
@@ -121,11 +130,6 @@ string Nodo::getOrigen(){
 void Nodo::setOrigen(string origen){
     this->origen = origen;
 }
-
-void Nodo::setEquipaje(int equipaje){
-    this->equipaje = equipaje;
-}
-
 
 Nodo::~Nodo()
 {

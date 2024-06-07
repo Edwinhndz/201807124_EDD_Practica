@@ -2,12 +2,12 @@
 #include <string>
 using namespace std;
 
-class Nodo
+class NodoA
 {
 private:
     /* data */
     int dato;
-    string nombre;
+    string vuelo;
     string registro;
     string modelo;
     string fabricante;
@@ -18,19 +18,20 @@ private:
     string estado;
 
 
-    Nodo *anterior;
-    Nodo *siguiente;
+    NodoA *anterior;
+    NodoA *siguiente;
+
 public:
-    Nodo(int dato);
-    Nodo *getSiguiente();
-    Nodo *getAnterior();
-    void setSiguiente(Nodo *siguiente);
-    void setAnterior(Nodo *anterior);
+    NodoA(int dato);
+    NodoA *getSiguiente();
+    NodoA *getAnterior();
+    void setSiguiente(NodoA *siguiente);
+    void setAnterior(NodoA *anterior);
     int getDato();
     void setDato(int dato);
 
-    string getNombre();
-    void setNombre(string nombre);
+    string getVuelo();
+    void setVuelo(string vuelo);
     string getRegistro();
     void setRegistro(string registro);
     string getModelo();
@@ -48,118 +49,116 @@ public:
     string getEstado();
     void setEstado(string estado);
 
-    ~Nodo();
+    ~NodoA();
 };
 
-Nodo::Nodo(int dato)
+NodoA::NodoA(int dato)
 {
     this->dato = dato;
     this->anterior = nullptr;
     this->siguiente = nullptr;
 }
 
-int Nodo::getDato(){
+int NodoA::getDato(){
     return this->dato;
 }
 
-void Nodo::setDato(int dato){
+void NodoA::setDato(int dato){
     this->dato = dato;
 }
 
-string Nodo::getNombre(){
-    return this->nombre;
+string NodoA::getVuelo(){
+    return this->vuelo;
 }
 
-void Nodo::setNombre(string nombre){
-    this->nombre = nombre;
+void NodoA::setVuelo(string vuelo){
+    this->vuelo = vuelo;
 }
 
-string Nodo::getRegistro(){
+string NodoA::getRegistro(){
     return this->registro;
 }
 
-void Nodo::setRegistro(string registro){
+void NodoA::setRegistro(string registro){
     this->registro = registro;
 }
 
-string Nodo::getModelo(){
+string NodoA::getModelo(){
     return this->modelo;
 }
 
-void Nodo::setModelo(string modelo){
+void NodoA::setModelo(string modelo){
     this->modelo = modelo;
 }
 
-string Nodo::getFabricante(){
+string NodoA::getFabricante(){
     return this->fabricante;
 }
 
-void Nodo::setFabricante(string fabricante){
+void NodoA::setFabricante(string fabricante){
     this->fabricante = fabricante;
 }
 
-int Nodo::getAnio(){
+int NodoA::getAnio(){
     return this->anio;
 }
 
-void Nodo::setAnio(int anio){
+void NodoA::setAnio(int anio){
     this->anio = anio;
 }
 
-int Nodo::getCapacidad(){
+int NodoA::getCapacidad(){
     return this->capacidad;
 }
 
-void Nodo::setCapacidad(int capacidad){
+void NodoA::setCapacidad(int capacidad){
     this->capacidad = capacidad;
 }
 
-int Nodo::getPesoMax(){
+int NodoA::getPesoMax(){
     return this->pesoMax;
 }
 
-void Nodo::setPesoMax(int pesoMax){
+void NodoA::setPesoMax(int pesoMax){
     this->pesoMax = pesoMax;
 }
 
-string Nodo::getAerolinea(){
+string NodoA::getAerolinea(){
     return this->aerolinea;
 }
 
-void Nodo::setAerolinea(string aerolinea){
+void NodoA::setAerolinea(string aerolinea){
     this->aerolinea = aerolinea;
 }
 
-string Nodo::getEstado(){
+string NodoA::getEstado(){
     return this->estado;
 }
 
-void Nodo::setEstado(string estado){
+void NodoA::setEstado(string estado){
     this->estado = estado;
 }
 
 
-Nodo* Nodo::getSiguiente(){
+NodoA* NodoA::getSiguiente(){
     return this->siguiente;
 }
 
-Nodo* Nodo::getAnterior(){
+NodoA* NodoA::getAnterior(){
     return this->anterior;
 }
 
-void Nodo::setSiguiente(Nodo *siguiente){
+void NodoA::setSiguiente(NodoA *siguiente){
     this->siguiente = siguiente;
 }
 
-void Nodo::setAnterior(Nodo *anterior){
+void NodoA::setAnterior(NodoA *anterior){
     this->anterior = anterior;
 }
 
-int Nodo::getDato(){
-    return this->dato;
-}
 
 
-Nodo::~Nodo()
+
+NodoA::~NodoA()
 {
 }

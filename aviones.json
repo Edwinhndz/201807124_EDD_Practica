@@ -19,6 +19,40 @@
         "capacidad": 150,
         "peso_max_despegue": 73500,
         "aerolinea": "AirlineY",
+        "estado": "mantenimiento"
+    }, 
+    {
+        "vuelo": "A300",
+        "numero_de_registro": "N54321",
+        "modelo":"Boeing 747",
+        "fabricante" : "Boeing",
+        "ano_fabricante": 2010,
+        "capacidad": 400,
+        "peso_max_despegue": 97000,
+        "aerolinea": "AirlineZ",
+        "estado": "disponible"
+    },
+    {   
+        "vuelo": "A400",
+        "numero_de_registro": "N98765",
+        "modelo":"Airbus A380",
+        "fabricante" : "Airbus",
+        "ano_fabricante": 2016,
+        "capacidad": 550,
+        "peso_max_despegue": 120000,
+        "aerolinea": "AirlineW",
+        "estado": "mantenimiento"
+    }, 
+    {   
+        "vuelo": "A500",
+        "numero_de_registro": "N24680",
+        "modelo":"Boeing 787",
+        "fabricante" : "Boeing",
+        "ano_fabricante": 2019,
+        "capacidad": 300,
+        "peso_max_despegue": 92000,
+        "aerolinea": "AirlineV",
         "estado": "disponible"
     }
+
 ]

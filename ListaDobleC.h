@@ -1,14 +1,15 @@
 #include <iostream>
 using namespace std;
 #include "NodoAvion.h"
+#include <string>
 
 class ListaCircular
 {
 private:
     /* data */
     int size=0;
-    Nodo* primero;
-    Nodo* ultimo;
+    NodoA* primero;
+    NodoA* ultimo;
 public:
     ListaCircular(/* args */);
     bool estaVacia();
@@ -20,7 +21,7 @@ int peso, string linea, string estado);
     void visualizarLista();
     //Getteres y Setters
     int getSize();
-    Nodo getPrimero();
+    NodoA getPrimero();
     ~ListaCircular();
 };
 
@@ -37,7 +38,7 @@ bool ListaCircular::estaVacia()
 
 void ListaCircular::insertarInicio(int dato)
 {
-    Nodo *nuevo = new Nodo(dato); //Se crea el nuevo nodo
+    NodoA *nuevo = new NodoA(dato); //Se crea el nuevo nodo
     if (ListaCircular::estaVacia())
     {
         nuevo->setSiguiente(nuevo); //El primer nodo se apunta a si mismo
@@ -52,13 +53,12 @@ void ListaCircular::insertarInicio(int dato)
     
 }
 
-void ListaCircular::insertarFinal(int dato, string name, string reg, string mod, string fab, int anio, int cap, 
+void ListaCircular::insertarFinal(int pos, string vuelo, string reg, string mod, string fab, int anio, int cap, 
 int peso, string linea, string estado)
 {
 
-    Nodo *nuevo = new Nodo(dato);
+    NodoA *nuevo = new NodoA(pos);
 
-    nuevo->setNombre(name);
     nuevo->setRegistro(reg);
     nuevo->setModelo(mod);
     nuevo->setFabricante(fab);
@@ -67,7 +67,7 @@ int peso, string linea, string estado)
     nuevo->setPesoMax(peso);
     nuevo->setAerolinea(linea);
     nuevo->setEstado(estado);
-    
+
 
     if (ListaCircular::estaVacia())
     {
@@ -80,6 +80,7 @@ int peso, string linea, string estado)
         ultimo->setSiguiente(nuevo); //Se enlaza el último nodo al nuevo
         ultimo = nuevo; //Se verfica que el nodo creado sea el último
     }
+    ListaCircular::size++;
 }
 
 void ListaCircular::eliminarInicio()
@@ -99,7 +100,7 @@ void ListaCircular::eliminarInicio()
         }
         else
         {
-            Nodo *segundo = primero->getSiguiente();
+            NodoA *segundo = primero->getSiguiente();
             ultimo->setSiguiente(segundo);
             delete primero;
             primero = segundo;
@@ -114,7 +115,7 @@ void ListaCircular::eliminarFinal()
         cout << "La lista está vacía" << endl;
     }
     else{
-        Nodo* temporal = primero;
+        NodoA* temporal = primero;
         if (primero == ultimo)
         {
             /* code */
@@ -149,11 +150,12 @@ void ListaCircular::visualizarLista()
     else
     {
         int nodoDato;
-        Nodo *actual = primero;
+        NodoA *actual = primero;
         do
         {
             nodoDato = actual->getDato();
-            cout << nodoDato << endl;
+            cout << nodoDato << " Nombre: " << actual->getVuelo() << " Vuelo: " <<  actual->getAerolinea() << " Modelo: " << actual->getModelo()
+            << " Estado: " << actual->getEstado() <<endl;
             actual = actual->getSiguiente();
         } while (actual != primero);
     }
