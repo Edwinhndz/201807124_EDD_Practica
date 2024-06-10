@@ -19,5 +19,65 @@
         "destino" : "Londres",
         "origen" : "Paris",
         "equipaje_facturado" : 1
+    },
+    {
+        "nombre": "Alice Johnson",
+        "nacionalidad": "Canadá",
+        "numero_de_pasaporte": "C98765432",
+        "vuelo" : "A400",
+        "asiento" : 8,
+        "destino" : "Toronto",
+        "origen" : "Vancouver",
+        "equipaje_facturado" : 3
+    },
+    {
+        "nombre": "Mohammed Ahmed",
+        "nacionalidad": "Egipto",
+        "numero_de_pasaporte": "D56789123",
+        "vuelo" : "A200",
+        "asiento" : 15,
+        "destino" : "Cairo",
+        "origen" : "Dubai",
+        "equipaje_facturado" : 2
+    },
+    {
+        "nombre": "Maria Garcia",
+        "nacionalidad": "España",
+        "numero_de_pasaporte": "E24681357",
+        "vuelo" : "A100",
+        "asiento" : 3,
+        "destino" : "Madrid",
+        "origen" : "Barcelona",
+        "equipaje_facturado" : 1
+    },
+    {
+        "nombre": "Yuki Tanaka",
+        "nacionalidad": "Japón",
+        "numero_de_pasaporte": "F13579246",
+        "vuelo" : "A500",
+        "asiento" : 10,
+        "destino" : "Tokio",
+        "origen" : "Osaka",
+        "equipaje_facturado" : 2
+    },
+    {
+        "nombre": "Hans Müller",
+        "nacionalidad": "Alemania",
+        "numero_de_pasaporte": "G98765432",
+        "vuelo" : "A300",
+        "asiento" : 6,
+        "destino" : "Berlín",
+        "origen" : "Múnich",
+        "equipaje_facturado" : 1
+    },
+    {
+        "nombre": "Anna Petrova",
+        "nacionalidad": "Rusia",
+        "numero_de_pasaporte": "H24681357",
+        "vuelo" : "A300",
+        "asiento" : 14,
+        "destino" : "Moscú",
+        "origen" : "San Petersburgo",
+        "equipaje_facturado" : 3
     }
 ]

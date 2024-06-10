@@ -4,14 +4,12 @@
 #include <string>
 #include "Pasajeros.h"
 #include "ListaDobleC.h"
+#include "Pila.h"
 #include <fstream>
-
 #include "json.hpp"
-
+#include <sstream>
 
 using json = nlohmann::json;
-
-
 
 void CargaPasajeros(Cola *cola)
 {
@@ -54,9 +52,12 @@ void CargaPasajeros(Cola *cola)
 }
 
 void CargaAviones(ListaCircular *lista, ListaCircular *lista2)
+
+// void IngresoEquipaje();
 {
     // Abrir el archivo JSON
     ifstream archivo("aviones.json");
+
     if (!archivo.is_open())
     {
         cout << "Error al abrir el archivo de aviones." << endl;
@@ -90,17 +91,59 @@ void CargaAviones(ListaCircular *lista, ListaCircular *lista2)
         string i = avion["estado"];
         cout << "-------------------------" << endl;
 
-
-        if(avion["estado"] == "disponible"){
+        if (avion["estado"] == "disponible")
+        {
             lista->insertarFinal(lista->getSize(), a, b, c, d, e, f, g, h, i);
-        }else if(avion["estado"] == "mantenimiento"){
+        }
+        else if (avion["estado"] == "mantenimiento")
+        {
             lista2->insertarFinal(lista2->getSize(), a, b, c, d, e, f, g, h, i);
         }
-
-
-        
     }
 }
+
+void IngresarEquipaje(Cola *cola, string commando)
+{
+
+    stringstream ss(commando);
+    string comando, accion, avion;
+    cout << "-------------------------" << endl;
+    getline(ss, comando, ',');
+    cout << "accion: " << comando << "\n";
+    getline(ss, accion, ',');
+    cout << "accion: " << accion << "\n";
+    getline(ss, avion, ',');
+    avion.pop_back();
+    cout << "avion: " << avion << "\n";
+    cout << "-------------------------" << endl;
+    cout << "" << endl;
+};
+
+void Commandos(Pila *pila, Cola *cola, ListaCircular *lista, ListaCircular *lista2){
+    ifstream archivo("movimientos.txt");
+
+
+    if (!archivo.is_open())
+    {
+        cout << "Error al abrir el archivo de commandos." << endl;
+        return;
+    }
+
+    string linea;
+  
+
+
+    while (getline(archivo, linea)) {
+        // Lo vamos imprimiendo
+        cout << "Una línea: ";
+        cout << linea << endl;
+        if (linea == "IngresoEquipajes;"){
+            cout << "" << endl;
+        }else{
+        IngresarEquipaje(cola, linea);
+        }
+    }
+};
 
 int main()
 {
@@ -109,7 +152,7 @@ int main()
     Cola *cola = new Cola();
     ListaCircular *lista = new ListaCircular();
     ListaCircular *lista2 = new ListaCircular();
-    
+    Pila *pila;
 
     do
     {
@@ -128,9 +171,9 @@ int main()
         case 1:
             std::cout << "Carga de aviones" << std::endl;
             CargaAviones(lista, lista2);
-          
-            //std::cin >> ej;
-            //cola->insertarInicio(ej);
+
+            // std::cin >> ej;
+            // cola->insertarInicio(ej);
             break;
         case 2:
             // Code for option 2
@@ -139,9 +182,14 @@ int main()
             break;
         case 3:
             // Code for option 3
+            cout << "Carga de movimientos" << endl;
+            Commandos(pila, cola, lista, lista2);
+
+
             break;
         case 4:
             // Code for option 4
+            cout << "Consultar pasajero" << endl;
             break;
         case 5:
             // Code for option 5
@@ -152,14 +200,17 @@ int main()
             lista->visualizarLista();
             cout << "-------------------------" << endl;
             lista2->visualizarLista();
+            cout << "-------------------------" << endl;
+            pila->visualizarLista();
             break;
+
         case 6:
             // Code for option 6
             break;
         default:
 
-            std::cout << "Elija una opcion valida." << std::endl;
-            std::cout << std::endl;
+            cout << "Elija una opcion valida." << std::endl;
+            cout << std::endl;
             break;
         }
 
@@ -168,7 +219,4 @@ int main()
     return 0;
 }
 
-
-
-
-//g++ -std=c++11 -o ejec main.cpp
+// g++ -std=c++11 -o ejec main.cpp

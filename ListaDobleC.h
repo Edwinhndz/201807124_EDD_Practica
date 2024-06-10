@@ -1,7 +1,7 @@
 #include <iostream>
-using namespace std;
-#include "NodoAvion.h"
 #include <string>
+#include "NodoAvion.h"
+using namespace std;
 
 class ListaCircular
 {
