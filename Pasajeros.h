@@ -19,6 +19,7 @@ public:
     void eliminarFinal();
     void visualizarLista();
     int getSize();
+    Nodo getUltimo();
     ~Cola();
 };
 
@@ -130,6 +131,10 @@ void Cola::visualizarLista()
 int Cola::getSize(){
     return size;
 }
+
+Nodo Cola::getUltimo(){
+    return *ultimo; 
+};
 
 Cola::~Cola()
 {

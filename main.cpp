@@ -8,6 +8,7 @@
 #include <fstream>
 #include "json.hpp"
 #include <sstream>
+#include <cstdlib>
 
 using json = nlohmann::json;
 
@@ -91,35 +92,82 @@ void CargaAviones(ListaCircular *lista, ListaCircular *lista2)
         string i = avion["estado"];
         cout << "-------------------------" << endl;
 
-        if (avion["estado"] == "disponible")
+        if (i == "disponible")
         {
             lista->insertarFinal(lista->getSize(), a, b, c, d, e, f, g, h, i);
         }
-        else if (avion["estado"] == "mantenimiento")
+        else if (i == "mantenimiento")
         {
             lista2->insertarFinal(lista2->getSize(), a, b, c, d, e, f, g, h, i);
         }
     }
-}
-
-void IngresarEquipaje(Cola *cola, string commando)
-{
-
-    stringstream ss(commando);
-    string comando, accion, avion;
-    cout << "-------------------------" << endl;
-    getline(ss, comando, ',');
-    cout << "accion: " << comando << "\n";
-    getline(ss, accion, ',');
-    cout << "accion: " << accion << "\n";
-    getline(ss, avion, ',');
-    avion.pop_back();
-    cout << "avion: " << avion << "\n";
-    cout << "-------------------------" << endl;
-    cout << "" << endl;
 };
 
-void Commandos(Pila *pila, Cola *cola, ListaCircular *lista, ListaCircular *lista2){
+void Commandos1(Cola *cola, ListaCircular *lista, ListaCircular *lista2){
+    ifstream archivo("movimientos.txt");
+
+
+    if (!archivo.is_open())
+    {
+        cout << "Error al abrir el archivo de commandos." << endl;
+        return;
+    }
+
+    string linea;
+  
+
+    int i = 1; 
+    while (getline(archivo, linea)) {
+        // Lo vamos imprimiendo
+        
+        cout << i <<".------------------------------------------" << endl;
+        cout << "Una línea: ";
+        cout << linea << endl;
+
+        if (linea != "IngresoEquipajes;"){
+            stringstream split(linea);
+            string linea, accion, avion;
+            cout << "-------------------------" << endl;
+            getline(split, linea, ',');
+            cout << "accion: " << linea << "\n";
+            getline(split, accion, ',');
+            cout << "accion: " << accion <<"\n";
+            getline(split, avion, ',');
+            avion.pop_back();
+            cout << "avion: |" << avion << "|"<<"\n";
+
+            
+
+            //cout << "Vuelo: " << lista->Busqueda(avion) << endl;
+
+            if(accion == "Ingreso"){
+
+                 NodoA nodo = lista->Busqueda2(avion);   
+                 lista2->insertarFinal(lista2->getSize(), nodo.getVuelo(), nodo.getRegistro(),nodo.getModelo(), 
+                 nodo.getFabricante(), nodo.getAnio(), nodo.getCapacidad(), nodo.getPesoMax(), nodo.getEstado(), "mantenimiento");
+                 lista->eliminarNodo1(avion);
+
+            }else if(accion == "Salida"){
+
+                 NodoA nodo = lista2->Busqueda2(avion);
+                 cout << "Avion saliendo de mantenimiento: " << nodo.getRegistro() << endl;
+                 lista->insertarFinal(lista->getSize(), nodo.getVuelo(), nodo.getRegistro(), nodo.getModelo(), 
+                 nodo.getFabricante(), nodo.getAnio(), nodo.getCapacidad(), nodo.getPesoMax(), nodo.getEstado(), "disponible");
+                 lista2->eliminarNodo2(avion);
+                 
+            }
+           
+            cout << "-------------------------" << endl;
+            cout << "" << endl;
+             
+        }
+
+        cout <<"------------------------------------------." << i <<endl;
+        i++;
+    }
+};
+
+void Commandos2(Pila *pila, Cola *cola, ListaCircular *lista, ListaCircular *lista2){
     ifstream archivo("movimientos.txt");
 
 
@@ -137,10 +185,10 @@ void Commandos(Pila *pila, Cola *cola, ListaCircular *lista, ListaCircular *list
         // Lo vamos imprimiendo
         cout << "Una línea: ";
         cout << linea << endl;
-        if (linea == "IngresoEquipajes;"){
+        if (linea != "IngresoEquipajes;"){
             cout << "" << endl;
         }else{
-        IngresarEquipaje(cola, linea);
+            cout << "Funcion equipaje" << endl;
         }
     }
 };
@@ -152,7 +200,7 @@ int main()
     Cola *cola = new Cola();
     ListaCircular *lista = new ListaCircular();
     ListaCircular *lista2 = new ListaCircular();
-    Pila *pila;
+    Pila *pila = new Pila();
 
     do
     {
@@ -183,7 +231,7 @@ int main()
         case 3:
             // Code for option 3
             cout << "Carga de movimientos" << endl;
-            Commandos(pila, cola, lista, lista2);
+            Commandos1(cola, lista, lista2);
 
 
             break;
@@ -195,12 +243,13 @@ int main()
             // Code for option 5
             std::cout << "Visualizar reportes" << std::endl;
             std::cout << std::endl;
+            cout << "-----------Cola--------------" << endl;
             cola->visualizarLista();
-            cout << "-------------------------" << endl;
+            cout << "------------Aviones D-------------" << endl;
             lista->visualizarLista();
-            cout << "-------------------------" << endl;
+            cout << "-------------Aviones M------------" << endl;
             lista2->visualizarLista();
-            cout << "-------------------------" << endl;
+            cout << "------------Pila Equipaje-------------" << endl;
             pila->visualizarLista();
             break;
 

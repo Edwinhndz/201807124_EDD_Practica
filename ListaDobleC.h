@@ -15,12 +15,17 @@ public:
     bool estaVacia();
     void insertarInicio(int dato);
     void insertarFinal(int dato, string name, string reg, string mod, string fab, int anio, int cap, 
-int peso, string linea, string estado);
+    int peso, string linea, string estado);
     void eliminarInicio();
     void eliminarFinal();
     void visualizarLista();
+    string Busqueda(string vuelo);
+    NodoA Busqueda2(string vuelo);
+    void eliminarNodo1(string numeroRegistro);
+    void eliminarNodo2(string numeroRegistro);
     //Getteres y Setters
     int getSize();
+    void setSize(int size);
     NodoA getPrimero();
     ~ListaCircular();
 };
@@ -60,6 +65,7 @@ int peso, string linea, string estado)
     NodoA *nuevo = new NodoA(pos);
 
     nuevo->setRegistro(reg);
+    nuevo->setVuelo(vuelo);
     nuevo->setModelo(mod);
     nuevo->setFabricante(fab);
     nuevo->setAnio(anio);
@@ -151,12 +157,14 @@ void ListaCircular::visualizarLista()
     {
         int nodoDato;
         NodoA *actual = primero;
+        int conteo = 1;
         do
         {
             nodoDato = actual->getDato();
-            cout << nodoDato << " Nombre: " << actual->getVuelo() << " Vuelo: " <<  actual->getAerolinea() << " Modelo: " << actual->getModelo()
+            cout<< conteo << ". Registro: " << actual->getRegistro() << " Aerolinea: " <<  actual->getAerolinea() << " Modelo: " << actual->getModelo()
             << " Estado: " << actual->getEstado() <<endl;
             actual = actual->getSiguiente();
+            conteo++;
         } while (actual != primero);
     }
 };
@@ -165,7 +173,135 @@ int ListaCircular::getSize(){
     return size;
 };
 
+string ListaCircular::Busqueda(string registro){
 
+    if (ListaCircular::estaVacia())
+    {
+        /* code */
+        cout << "La lista está vacía\n" << endl;
+    }
+    else
+    {
+        int nodoDato;
+        NodoA *actual = primero;
+        
+        do
+        {
+            string regis = actual->getRegistro();
+            bool isEqual = regis == registro;
+            if(actual->getRegistro() == registro){
+                return actual->getRegistro();
+            }
+            actual = actual->getSiguiente();
+        } while (actual != primero);
+    }
+    return "No se encontro el registro |" + registro +"|";
+};
+
+NodoA ListaCircular::Busqueda2(string registro){
+
+    if (ListaCircular::estaVacia())
+    {
+        /* code */
+        cout << "La lista está vacía\n" << endl;
+    }
+    else
+    {
+        int nodoDato;
+        NodoA *actual = primero;
+        
+        do
+        {
+            string regis = actual->getRegistro();
+            bool isEqual = regis == registro;
+            if(actual->getRegistro() == registro){
+                return *actual;
+            }
+            actual = actual->getSiguiente();
+        } while (actual != primero);
+    }
+
+    return *primero;
+};
+
+void ListaCircular::eliminarNodo1(string numeroRegistro) {
+
+    if (ListaCircular::estaVacia()) {
+        cout << "La lista está vacía" << endl;
+    } else {
+        NodoA* temporal = primero;
+        NodoA* anterior = nullptr;
+        
+        do {
+            if (temporal->getRegistro() == numeroRegistro) {
+                if (temporal == primero) {
+                    cout << "primer avion yendo a mantenimiento " << temporal->getRegistro() << endl;
+                    primero = temporal->getSiguiente();
+                    ultimo->setSiguiente(primero);
+                } else if (temporal == ultimo) {
+                    cout << "ultimo avion yendo a mantenimiento " << temporal->getRegistro() << endl;
+                    ultimo = anterior;
+                    ultimo->setSiguiente(primero);
+                } else {
+                    cout << "avion yendo a mantenimiento " << temporal->getRegistro() << endl;
+                    anterior->setSiguiente(temporal->getSiguiente());
+                }
+                delete temporal;
+                size--;
+                break;
+            }
+            anterior = temporal;
+            temporal = temporal->getSiguiente();
+
+        } while (temporal != primero);
+        if (temporal == primero) {
+            cout << "No se encontro el avion" << endl;
+        }
+    }
+};
+
+void ListaCircular::eliminarNodo2(string numeroRegistro) {
+
+    if (ListaCircular::estaVacia()) {
+        cout << "La lista está vacía" << endl;
+    } else {
+        NodoA* temporal = primero;
+        NodoA* anterior = nullptr;
+        
+        do {
+            if (temporal->getRegistro() == numeroRegistro) {
+                if (temporal == primero) {
+                    cout << "primer avion de disponible" << temporal->getRegistro() << endl;
+                    primero = temporal->getSiguiente();
+                    ultimo->setSiguiente(primero);
+                } else if (temporal == ultimo) {
+                    cout << "ultimo avion disponible" << temporal->getRegistro() << endl;
+                    ultimo = anterior;
+                    ultimo->setSiguiente(primero);
+                } else {
+                    cout << "avion disponible " << temporal->getRegistro() << endl;
+                    anterior->setSiguiente(temporal->getSiguiente());
+                }
+                delete temporal;
+                size--;
+                break;
+            }
+            anterior = temporal;
+            temporal = temporal->getSiguiente();
+            
+        } while (temporal != primero);
+
+        if(temporal == primero){
+            cout << "No se encontro el avion" << endl;
+        }
+
+    }
+}
+
+
+void ListaCircular::setSize(int size){
+    this->size = size;
+};
 
 ListaCircular::~ListaCircular()
 {

@@ -15,7 +15,8 @@ private:
 public:
     Pila(/* args */);
     bool estaVacia();
-    void insertarInicio(Nodop *aux);
+    void insertarInicio(int dato, string name, string nacio, string pasaporte, 
+string vuelo, int asiento, string destino, string origen, int equipaje);
     void insertarFinal(int dato);
     void eliminarInicio();
     void eliminarFinal();
@@ -24,15 +25,30 @@ public:
     ~Pila();
 };
 
+Pila::Pila(/* args */)
+{
+    primero = ultimo = nullptr;
+}
+
 bool Pila::estaVacia()
 {
     return (primero == nullptr) && (ultimo == nullptr);
 }
 
-void Pila::insertarInicio(Nodop *aux)
+void Pila::insertarInicio(int dato, string name, string nacio, string pasaporte, 
+string vuelo, int asiento, string destino, string origen, int equipaje)
 {
 
-    Nodop *nuevo = aux; // Se crea el nuevo nodo
+    Nodop *nuevo; // Se crea el nuevo nodo
+    nuevo->setPasaporte(pasaporte);
+    nuevo->setNombre(name);
+    nuevo->setNacionalidad(nacio);
+    nuevo->setVuelo(vuelo);
+    nuevo->setAsiento(asiento);
+    nuevo->setDestino(destino);
+    nuevo->setOrigen(origen);
+    nuevo->setEquipaje(equipaje);
+
 
     if (Pila::estaVacia())
     {
@@ -93,6 +109,10 @@ void Pila::visualizarLista()
         }
         
     }
+};
+
+int Pila::getSize(){
+    return size;
 };
 
 Pila::~Pila(){
