@@ -15,9 +15,10 @@ private:
 public:
     Pila(/* args */);
     bool estaVacia();
-    void insertarInicio(int dato, string name, string nacio, string pasaporte, 
-string vuelo, int asiento, string destino, string origen, int equipaje);
-    void insertarFinal(int dato);
+    void insertarInicio(int dato, string name, string nacio, string pasaporte,
+                        string vuelo, int asiento, string destino, string origen, int equipaje);
+    void insertarFinal(int dato, string name, string nacio, string pasaporte,
+                       string vuelo, int asiento, string destino, string origen, int equipaje);
     void eliminarInicio();
     void eliminarFinal();
     void visualizarLista();
@@ -35,20 +36,20 @@ bool Pila::estaVacia()
     return (primero == nullptr) && (ultimo == nullptr);
 }
 
-void Pila::insertarInicio(int dato, string name, string nacio, string pasaporte, 
-string vuelo, int asiento, string destino, string origen, int equipaje)
+void Pila::insertarInicio(int dato, string name, string nacio,
+                          string pasaporte, string vuelo, int asiento, string destino, string origen, int equipaje)
 {
 
-    Nodop *nuevo; // Se crea el nuevo nodo
-    nuevo->setPasaporte(pasaporte);
+    Nodop *nuevo = new Nodop(dato); // Se crea el nuevo nodo
+
     nuevo->setNombre(name);
     nuevo->setNacionalidad(nacio);
+    nuevo->setPasaporte(pasaporte);
     nuevo->setVuelo(vuelo);
     nuevo->setAsiento(asiento);
     nuevo->setDestino(destino);
     nuevo->setOrigen(origen);
     nuevo->setEquipaje(equipaje);
-
 
     if (Pila::estaVacia())
     {
@@ -57,11 +58,38 @@ string vuelo, int asiento, string destino, string origen, int equipaje)
     }
     else
     {
-        nuevo->setSiguiente(primero); // Se enlaza el nuevo nodo al primero
-        primero = nuevo;              // Se verifica que el nodo creado sea el primero
+        nuevo->setSiguiente(primero); //Se enlaza el nuevo nodo al primero
+        primero = nuevo; //Se verifica que el nodo creado sea el primero
     }
+    cout << "Se insertó el pasajero: " << name << endl;
     Pila::size++;
 }
+
+void Pila::insertarFinal(int dato, string name, string nacio, string pasaporte,
+                         string vuelo, int asiento, string destino, string origen, int equipaje)
+{
+
+    Nodop *nuevo = new Nodop(dato); // Se crea el nuevo nodo
+    nuevo->setPasaporte(pasaporte);
+    nuevo->setNombre(name);
+    nuevo->setNacionalidad(nacio);
+    nuevo->setVuelo(vuelo);
+    nuevo->setAsiento(asiento);
+    nuevo->setDestino(destino);
+    nuevo->setOrigen(origen);
+    nuevo->setEquipaje(equipaje);
+    if (Pila::estaVacia())
+    {
+        nuevo->setSiguiente(nuevo);
+        primero = ultimo = nuevo;
+    }
+    else
+    {
+        nuevo->setSiguiente(primero);
+        ultimo->setSiguiente(nuevo); //Se enlaza el último nodo al nuevo
+        ultimo = nuevo; //Se verfica que el nodo creado sea el último
+    }
+};
 
 void Pila::eliminarInicio()
 {
@@ -84,8 +112,8 @@ void Pila::eliminarInicio()
             ultimo->setSiguiente(segundo);
             delete primero;
             primero = segundo;
-        }   
-    } 
+        }
+    }
 }
 
 void Pila::visualizarLista()
@@ -93,12 +121,22 @@ void Pila::visualizarLista()
     if (Pila::estaVacia())
     {
         /* code */
-        cout << "La lista está vacía\n" << endl;
+        cout << "La lista está vacía\n"
+             << endl;
     }
     else
     {
         string nodoDato;
         Nodop *actual = primero;
+
+        // do
+        // {
+        //     nodoDato = actual->getNombre();
+        //     cout << "nombre: " << nodoDato << " Nac.:" << actual->getNacionalidad() << " Asiento:" << actual->getAsiento() << " Passaport:" << actual->getPasaporte() << " Vuelo: " << actual->getVuelo() << endl;
+        //     actual = actual->getSiguiente();
+
+        // } while (actual == ultimo);
+
         while (actual != nullptr)
         {
             /* code */
@@ -107,11 +145,11 @@ void Pila::visualizarLista()
             " Passaport:" << actual->getPasaporte() <<  " Vuelo: "<< actual->getVuelo() << endl;
             actual = actual->getSiguiente();
         }
-        
     }
 };
 
-int Pila::getSize(){
+int Pila::getSize()
+{
     return size;
 };
 

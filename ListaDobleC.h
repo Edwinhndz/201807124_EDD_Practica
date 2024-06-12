@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "NodoAvion.h"
+#include <fstream>
 using namespace std;
 
 class ListaCircular
@@ -23,6 +24,8 @@ public:
     NodoA Busqueda2(string vuelo);
     void eliminarNodo1(string numeroRegistro);
     void eliminarNodo2(string numeroRegistro);
+    bool Encontrado(string numeroRegistro);
+    void generarReporte();
     //Getteres y Setters
     int getSize();
     void setSize(int size);
@@ -200,10 +203,12 @@ string ListaCircular::Busqueda(string registro){
 
 NodoA ListaCircular::Busqueda2(string registro){
 
+    bool encontrado = false;
     if (ListaCircular::estaVacia())
     {
         /* code */
         cout << "La lista está vacía\n" << endl;
+        return *primero;
     }
     else
     {
@@ -215,13 +220,17 @@ NodoA ListaCircular::Busqueda2(string registro){
             string regis = actual->getRegistro();
             bool isEqual = regis == registro;
             if(actual->getRegistro() == registro){
-                return *actual;
+                encontrado = true;
             }
             actual = actual->getSiguiente();
         } while (actual != primero);
+        if(encontrado){
+            return *actual;
+        }else{
+            NodoA *nulo = new NodoA(0);
+            return *nulo;
+        }
     }
-
-    return *primero;
 };
 
 void ListaCircular::eliminarNodo1(string numeroRegistro) {
@@ -296,12 +305,77 @@ void ListaCircular::eliminarNodo2(string numeroRegistro) {
         }
 
     }
-}
+};
 
+bool ListaCircular::Encontrado(string registro){
+
+    bool encontrado = false;
+
+    if (ListaCircular::estaVacia())
+    {
+        /* code */
+        cout << "La lista está vacía\n" << endl;
+        return false;
+    }
+    else
+    {
+        int nodoDato;
+        NodoA *actual = primero;
+        
+        do
+        {
+            string regis = actual->getRegistro();
+            bool isEqual = regis == registro;
+            if(actual->getRegistro() == registro){
+                encontrado = true;
+            }
+            actual = actual->getSiguiente();
+        } while (actual != primero);
+
+        if(encontrado){
+            return true;
+        }else{
+            return false;
+        }
+    }
+};
 
 void ListaCircular::setSize(int size){
     this->size = size;
 };
+
+void ListaCircular::generarReporte(){
+    if (ListaCircular::estaVacia()){}
+    else
+    {
+        ofstream archivo; //
+        archivo.open("grafica_AvionesD.dot", ios::out);
+        archivo << "digraph G { rankdir = LR; " << endl;
+
+        int nodoDato;
+        NodoA *actual = primero;
+        do
+        {   
+            
+            nodoDato = actual->getDato();
+            archivo << nodoDato;
+            archivo << " -> ";
+            actual = actual->getSiguiente();
+            if (actual == primero)
+            {
+                archivo << actual->getDato();
+            }
+            
+        } while (actual != primero);
+
+        archivo << "; }";
+        archivo.close();
+        system("dot -Tpng grafica_AvionesD.dot -o grafica_AvionesD.png");
+        system("start grafica_LC.png");
+    }
+    
+
+}
 
 ListaCircular::~ListaCircular()
 {
