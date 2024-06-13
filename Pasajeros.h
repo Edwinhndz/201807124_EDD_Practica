@@ -236,9 +236,6 @@ Nodo Cola::getUltimo()
     return *ultimo;
 };
 
-
-
-
 void Cola::generarReporte(){
     if (Cola::estaVacia()){
         cout << "La lista está vacía\n" << endl;

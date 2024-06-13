@@ -19,12 +19,12 @@
 
 using json = nlohmann::json;
 
-void CargaPasajeros(Cola *cola, Enlazada *enlazada)
+void CargaPasajeros(Cola *cola, Enlazada *enlazada, string pasajerosss)
 {
-    std::cout << "SELECCIONASTE LA OPCION PARA LA CARGAR DE AVIONES " << endl;
 
     // Abrir el archivo JSON
-    ifstream archivo("pasajeros.json");
+
+    ifstream archivo(pasajerosss);
     if (!archivo.is_open())
     {
         cout << "Error al abrir el archivo de aviones." << endl;
@@ -66,12 +66,12 @@ void CargaPasajeros(Cola *cola, Enlazada *enlazada)
     }
 }
 
-void CargaAviones(ListaCircular *lista, ListaCircular *lista2)
+void CargaAviones(ListaCircular *lista, ListaCircular *lista2, string avionesss)
 
 // void IngresoEquipaje();
 {
     // Abrir el archivo JSON
-    ifstream archivo("aviones2.json");
+    ifstream archivo(avionesss);
 
     if (!archivo.is_open())
     {
@@ -264,6 +264,8 @@ int main()
     ListaCircular *lista2 = new ListaCircular();
     Enlazada *enlazada = new Enlazada();
     string pasaporte;
+    string avionesss;
+    string pasajerosss;
 
     do
     {
@@ -283,7 +285,9 @@ int main()
         {
         case 1:
             std::cout << "Carga de aviones" << std::endl;
-            CargaAviones(lista, lista2);
+            cout << "Ingrese el nombre del archivo de aviones: ";
+            cin >> avionesss;
+            CargaAviones(lista, lista2, avionesss);
 
             // std::cin >> ej;
             // cola->insertarInicio(ej);
@@ -291,7 +295,9 @@ int main()
         case 2:
             // Code for option 2
             cout << "Carga de pasajeros" << endl;
-            CargaPasajeros(cola, enlazada);
+            cout << "Ingrese el nombre del archivo de pasajeros: ";
+            cin >> pasajerosss;
+            CargaPasajeros(cola, enlazada, pasajerosss);
             break;
         case 3:
             // Code for option 3
