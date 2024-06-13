@@ -1,0 +1,12 @@
+digraph G { 
+rankdir = LR;
+label="Cola ";bgcolor=grey 
+subgraph cluster_top_floor{
+bgcolor=wheat; 
+label="Pasajeros";
+nodo0[ shape=component , fontcolor=aliceblue , style=filled , color=indianred , label="Nombre: Josue Hernandez, Pasaporte:A12345678 Equipaje:1 Asiento:12 Nacionalidad:Estados Unidos Origen:Tokio Destino:Nueva York"]
+nodo1[ shape=component , fontcolor=aliceblue , style=filled , color=indianred , label="Nombre: Jane Smith, Pasaporte:P98765432 Equipaje:1 Asiento:5 Nacionalidad:Reino Unido Origen:Paris Destino:Londres"]
+nodo2[ shape=component , fontcolor=aliceblue , style=filled , color=indianred , label="Nombre: Paco Barrios, Pasaporte:P13579246 Equipaje:2 Asiento:15 Nacionalidad:Guatemala Origen:Guatemala City Destino:Cancun"]
+nodo0 -> nodo1 -> nodo2;
+}
+}

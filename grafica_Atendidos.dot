@@ -1,0 +1,20 @@
+digraph G { 
+rankdir = LR;
+label="Lista Enlazada";bgcolor=grey 
+subgraph cluster_top_floor{
+bgcolor=wheat; 
+label="Pasajeros con equipaje ingresado";
+nodo0[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label="Nombre: Juan Perez, Pasaporte:P98765432"]
+nodo1[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label="Nombre: John Doe, Pasaporte:P12345678"]
+nodo2[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label="Nombre: Maria Lopez, Pasaporte:P24681357"]
+nodo3[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label="Nombre: Ahmed Al-Farsi, Pasaporte:P34567890"]
+nodo4[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label="Nombre: Liu Wei, Pasaporte:P23456789"]
+nodo5[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label="Nombre: Carlos Rodríguez, Pasaporte:P45678901"]
+nul[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label="Null "]
+nul2[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label="Null "]
+nodo0 -> nodo1 -> nodo2 -> nodo3 -> nodo4 -> nodo5;
+nodo5 -> nul
+nodo5 -> nodo4 -> nodo3 -> nodo2 -> nodo1 -> nodo0;
+nodo0 -> nul2;
+}
+}

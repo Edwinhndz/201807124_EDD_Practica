@@ -57,7 +57,7 @@ void CargaPasajeros(Cola *cola, Enlazada *enlazada)
         cout << "-------------------------" << endl;
 
         if(h == 0){
-            enlazada->insertarInicio(enlazada->getSize(), a, b, c, d, e, f, g, h);
+            enlazada->insertarFinal(enlazada->getSize(), a, b, c, d, e, f, g, h);
         }else{
             cola->insertarInicio(cola->getSize(), a, b, c, d, e, f, g, h);
         }
@@ -137,13 +137,17 @@ void Commandos1(Cola *cola, ListaCircular *lista, ListaCircular *lista2)
         cout << i << ".------------------------------------------" << endl;
         cout << "Una línea: ";
         cout << linea << endl;
-        if (linea != "IngresoEquipajes;")
+
+        if(linea == ""){
+            cout << "linea vacia" << endl;
+        }
+        else if (linea != "IngresoEquipajes;")
         {
             stringstream split(linea);
             string linea, accion, avion;
             cout << "-------------------------" << endl;
             getline(split, linea, ',');
-            cout << "accion: " << linea << "\n";
+            cout << "Commando: " << linea << "\n";
             getline(split, accion, ',');
             cout << "accion: " << accion << "\n";
             getline(split, avion, ',');
@@ -166,6 +170,7 @@ void Commandos1(Cola *cola, ListaCircular *lista, ListaCircular *lista2)
                     lista2->insertarFinal(lista2->getSize(), nodo.getVuelo(), nodo.getRegistro(), nodo.getModelo(),
                                           nodo.getFabricante(), nodo.getAnio(), nodo.getCapacidad(), nodo.getPesoMax(), nodo.getEstado(), "mantenimiento");
                     lista->eliminarNodo1(avion);
+                    
                 }
             }
             else if (accion == "Salida")
@@ -219,28 +224,36 @@ void Commandos2(Pila *pila, Cola *cola, Enlazada *enlazada)
             Nodo nodo = cola->getUltimo();
 
 
-            cout << "abajo" << endl;
             //cout << nodo.getSiguiente()->getNombre() << endl;
             
-            if (nodo.getSiguiente() == nullptr){
-                cout << "medio" << nodo. getNombre() << endl;
+            if (nodo.getSiguiente() == nullptr){ 
+                
                 pila->insertarInicio(pila->getSize(), nodo.getNombre(), nodo.getNacionalidad(),
                                  nodo.getPasaporte(), nodo.getVuelo(), nodo.getAsiento(), nodo.getDestino(), nodo.getOrigen(), nodo.getEquipaje());
                 enlazada->insertarFinal(enlazada->getSize(), nodo.getNombre(), nodo.getNacionalidad(),
                                  nodo.getPasaporte(), nodo.getVuelo(), nodo.getAsiento(), nodo.getDestino(), nodo.getOrigen(), nodo.getEquipaje());
+          
                 cola->eliminarFinal();
-            }else{
 
-            }
-            cout << "arriba" << endl;
-           
-            
-            
-            
+            }             
         }
     }
+    enlazada->ordenar();
 };
 
+void Pasajero(string a, Enlazada *enlazada){
+   
+        Nodo2 pasa = enlazada->Pasajero(a);
+
+
+        if(pasa.getNombre() == ""){
+            cout << "Pasajero no encontrado" << endl;
+        }else{
+
+        cout << "nombre: " << pasa.getNombre() << " Asiento:" << pasa.getAsiento() << " Vuelo: " << pasa.getVuelo() << endl;
+        enlazada->generarReporte2(pasa);
+        }
+}
 int main()
 {
     int choice;
@@ -250,6 +263,7 @@ int main()
     ListaCircular *lista = new ListaCircular();
     ListaCircular *lista2 = new ListaCircular();
     Enlazada *enlazada = new Enlazada();
+    string pasaporte;
 
     do
     {
@@ -289,31 +303,35 @@ int main()
         case 4:
             // Code for option 4
             cout << "Consultar pasajero" << endl;
+            cout << "Ingrese el numero de pasaporte: ";
+            // string pasaporte;
+            cin >> pasaporte;
+            Pasajero(pasaporte, enlazada);
+            
             break;
         case 5:
             // Code for option 5
             std::cout << "Visualizar reportes" << std::endl;
             std::cout << std::endl;
-            cout << "-----------Cola--------------" << endl;
+            cout << "-----------Cola--------------" << cola->getSize() << endl;
             cola->visualizarLista();
-            cout << "------------Aviones D-------------" << endl;
+            cola->generarReporte();
+            cout << "------------Aviones D-------------" << lista->getSize() << endl;
             lista->visualizarLista();
             lista->generarReporte();
-            cout << "-------------Aviones M------------" << endl;
+            cout << endl;
+            cout << "-------------Aviones M------------" << lista2->getSize() << endl;
             lista2->visualizarLista();
-            cout << "------------Pila Equipaje-------------" << endl;
+            lista2->generarReporte2();
+            cout << endl;
+            cout << "------------Pila Equipaje-------------"  << pila->getSize() << endl;
             pila->visualizarLista();
-            cout << "------------Pasajeros sin equipaje-------------" << endl;
+            pila->generarReporte();
+            cout << endl;
+            cout << "------------Pasajeros ingresados-------------" << enlazada->getSize() << endl;
             enlazada->visualizarLista();
+            enlazada->generarReporte();
             break;
-
-        case 7:
-            cout << "desordenado: " << endl;
-            enlazada->visualizarLista();
-            cout << "" << endl;
-            cout << "ordenado: " << endl;
-            enlazada->Ordenar();
-            enlazada->visualizarLista();
 
         case 6:
             // Code for option 6

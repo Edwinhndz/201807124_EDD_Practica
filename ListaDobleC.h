@@ -26,6 +26,7 @@ public:
     void eliminarNodo2(string numeroRegistro);
     bool Encontrado(string numeroRegistro);
     void generarReporte();
+    void generarReporte2();
     //Getteres y Setters
     int getSize();
     void setSize(int size);
@@ -89,8 +90,8 @@ int peso, string linea, string estado)
         ultimo->setSiguiente(nuevo); //Se enlaza el último nodo al nuevo
         ultimo = nuevo; //Se verfica que el nodo creado sea el último
     }
-    ListaCircular::size++;
-}
+    size++;
+};
 
 void ListaCircular::eliminarInicio()
 {
@@ -219,11 +220,13 @@ NodoA ListaCircular::Busqueda2(string registro){
         {
             string regis = actual->getRegistro();
             bool isEqual = regis == registro;
+            
             if(actual->getRegistro() == registro){
                 encontrado = true;
             }
             actual = actual->getSiguiente();
         } while (actual != primero);
+
         if(encontrado){
             return *actual;
         }else{
@@ -256,7 +259,6 @@ void ListaCircular::eliminarNodo1(string numeroRegistro) {
                     anterior->setSiguiente(temporal->getSiguiente());
                 }
                 delete temporal;
-                size--;
                 break;
             }
             anterior = temporal;
@@ -267,6 +269,7 @@ void ListaCircular::eliminarNodo1(string numeroRegistro) {
             cout << "No se encontro el avion" << endl;
         }
     }
+    size--;
 };
 
 void ListaCircular::eliminarNodo2(string numeroRegistro) {
@@ -280,11 +283,11 @@ void ListaCircular::eliminarNodo2(string numeroRegistro) {
         do {
             if (temporal->getRegistro() == numeroRegistro) {
                 if (temporal == primero) {
-                    cout << "primer avion de disponible" << temporal->getRegistro() << endl;
+                    cout << "primer avion de disponible " << temporal->getRegistro() << endl;
                     primero = temporal->getSiguiente();
                     ultimo->setSiguiente(primero);
                 } else if (temporal == ultimo) {
-                    cout << "ultimo avion disponible" << temporal->getRegistro() << endl;
+                    cout << "ultimo avion disponible " << temporal->getRegistro() << endl;
                     ultimo = anterior;
                     ultimo->setSiguiente(primero);
                 } else {
@@ -292,7 +295,6 @@ void ListaCircular::eliminarNodo2(string numeroRegistro) {
                     anterior->setSiguiente(temporal->getSiguiente());
                 }
                 delete temporal;
-                size--;
                 break;
             }
             anterior = temporal;
@@ -305,6 +307,7 @@ void ListaCircular::eliminarNodo2(string numeroRegistro) {
         }
 
     }
+    size--;
 };
 
 bool ListaCircular::Encontrado(string registro){
@@ -345,37 +348,92 @@ void ListaCircular::setSize(int size){
 };
 
 void ListaCircular::generarReporte(){
-    if (ListaCircular::estaVacia()){}
+    if (ListaCircular::estaVacia()){
+        cout << "La lista está vacía\n" << endl;
+    }
     else
     {
         ofstream archivo; //
         archivo.open("grafica_AvionesD.dot", ios::out);
-        archivo << "digraph G { rankdir = LR; " << endl;
+        archivo << "digraph G { " << endl << "rankdir = LR;" << endl << "label=\"Lista Circular\";" << "bgcolor=grey "<< endl 
+        <<"subgraph cluster_top_floor{" << endl << "bgcolor=wheat; " << endl;
+        archivo << "label=\"Aviones Disponibles\";"<< endl;
 
-        int nodoDato;
+        string nodoDato;
         NodoA *actual = primero;
+        int conteo = 0;
+
         do
         {   
-            
-            nodoDato = actual->getDato();
-            archivo << nodoDato;
-            archivo << " -> ";
+            nodoDato = actual->getRegistro();
+            archivo <<"nodo"<< conteo << "[ shape=octagon , fontcolor=aliceblue , style=filled,color=teal, label=\" " << conteo << ". Registro: " << nodoDato << ", Estado: " << actual->getEstado() << "\"]" <<endl;
+     
             actual = actual->getSiguiente();
-            if (actual == primero)
-            {
-                archivo << actual->getDato();
-            }
             
-        } while (actual != primero);
+            conteo++;
+        } while (conteo != getSize());
 
-        archivo << "; }";
+        int size = 0;
+
+        do{
+            archivo << "nodo" << size << " -> ";
+            size++;
+        }while(size != getSize());
+
+        archivo << "nodo0";
+        archivo << ";" << endl <<"}" << endl << "}";
         archivo.close();
         system("dot -Tpng grafica_AvionesD.dot -o grafica_AvionesD.png");
-        system("start grafica_LC.png");
+        system("open grafica_AvionesD.png");
     }
     
 
-}
+};
+
+void ListaCircular::generarReporte2(){
+    if (ListaCircular::estaVacia()){
+        cout << "La lista está vacía\n" << endl;
+        return;
+    }
+    else
+    {
+        ofstream archivo; //
+        archivo.open("grafica_AvionesM.dot", ios::out);
+        archivo << "digraph G { " << endl << "rankdir = LR;" << endl << "label=\"Lista Circular\";" << "bgcolor=grey "<< endl 
+        <<"subgraph cluster_top_floor{" << endl << "bgcolor=wheat; " << endl;
+        archivo << "label=\"Aviones en Mantenimiento\";"<< endl;
+
+        string nodoDato;
+        NodoA *actual = primero;
+        int conteo = 0;
+        do
+        {   
+            //cout << "do 3" << endl;
+            nodoDato = actual->getRegistro();
+            archivo <<"nodo"<< conteo << "[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label=\"Registro: " <<nodoDato << ", Estado: " << actual->getEstado() << "\"]" <<endl;
+            //archivo << " -> ";
+            actual = actual->getSiguiente();
+            
+            conteo++;
+        } while (conteo != ListaCircular::size);
+
+        int size = 0;
+        do{
+            //cout << "do 4" << endl;
+            archivo << "nodo" << size << " -> ";
+
+            size++;
+
+        }while(size != ListaCircular::size);
+
+        archivo << "nodo0";
+        archivo << ";" << endl <<"}"<< endl <<"}";
+        archivo.close();
+        system("dot -Tpng grafica_AvionesM.dot -o grafica_AvionesM.png");
+        system("open grafica_AvionesM.png");
+    }
+};
+
 
 ListaCircular::~ListaCircular()
 {

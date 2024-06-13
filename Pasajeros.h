@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
-using namespace std;
 #include "NodoPasajero.h"
+#include <fstream>
+
+using namespace std;
 
 class Cola
 {
@@ -13,6 +15,7 @@ private:
 
 public:
     Cola(/* args */);
+    Nodo getPrimero();
     bool estaVacia();
     void insertarInicio(int dato, string name, string nacio, string pasaporte, string vuelo, int asiento, string destino, string origen, int equipaje);
     void insertarFinal(int dato, string name, string nacio, string pasaporte, string vuelo, int asiento, string destino, string origen, int equipaje);
@@ -22,6 +25,7 @@ public:
     Nodo Ultimo();
     int getSize();
     Nodo getUltimo();
+    void generarReporte();
     ~Cola();
 };
 
@@ -29,6 +33,11 @@ Cola::Cola(/* args */)
 {
     primero = ultimo = nullptr;
 }
+
+Nodo Cola::getPrimero()
+{
+    return *primero;
+};
 
 bool Cola::estaVacia()
 {
@@ -60,7 +69,7 @@ void Cola::insertarInicio(int dato, string name, string nacio,
         nuevo->setSiguiente(primero); //Se enlaza el nuevo nodo al primero
         primero = nuevo; //Se verifica que el nodo creado sea el primero
     }
-    Cola::size++;
+    size++;
 }
 
 void Cola::insertarFinal(int dato, string name, string nacio,
@@ -87,7 +96,8 @@ void Cola::insertarFinal(int dato, string name, string nacio,
         ultimo->setSiguiente(nuevo); // Se enlaza el último nodo al nuevo
         ultimo = nuevo;              // Se verfica que el nodo creado sea el último
     }
-}
+    size++;
+};
 
 void Cola::eliminarInicio()
 {
@@ -111,7 +121,8 @@ void Cola::eliminarInicio()
             primero = segundo;
         }
     }
-}
+    size--;
+};
 
 void Cola::visualizarLista()
 {
@@ -221,10 +232,66 @@ Nodo Cola::Ultimo()
 };
 
 Nodo Cola::getUltimo()
-{
-    
+{   
     return *ultimo;
 };
+
+
+
+
+void Cola::generarReporte(){
+    if (Cola::estaVacia()){
+        cout << "La lista está vacía\n" << endl;
+        return;
+    }
+    else
+    {
+        ofstream archivo; //
+        archivo.open("grafica_Pasajeros.dot", ios::out);
+        archivo << "digraph G { " << endl << "rankdir = LR;" << endl << "label=\"Enlazada \";" << "bgcolor=grey "<< endl 
+        <<"subgraph cluster_top_floor{" << endl << "bgcolor=wheat; " << endl;
+        archivo << "label=\"Pasajeros\";"<< endl;
+
+        string nodoDato;
+        Nodo *actual = primero;
+        int conteo = 0;
+
+        do
+        {   
+            //cout << getSize() << endl;
+            nodoDato = actual->getNombre();
+            archivo <<"nodo"<< conteo << "[ shape=component , fontcolor=aliceblue , style=filled , color=indianred , label=\"Nombre: " <<nodoDato << ", Pasaporte:" 
+            << actual->getPasaporte() << " Equipaje:" << actual->getEquipaje() << " Asiento:" << actual->getAsiento() 
+            << " Nacionalidad:" << actual->getNacionalidad()<< " Origen:" << actual->getOrigen() << " Destino:"<< actual->getDestino() << "\"]" <<endl;
+            //archivo << " -> ";
+            actual = actual->getSiguiente();
+            
+            conteo++;
+        } while (conteo != size);
+
+        int sizee = 0;
+
+         do{
+
+            //cout << "do2 " << endl;
+            if(sizee == size-1){
+                archivo << "nodo" << sizee ;
+            }else{
+                archivo << "nodo" << sizee << " -> ";
+            }
+            sizee++;
+        }while(sizee != size);
+
+        archivo << ";" << endl <<"}" << endl << "}";
+        archivo.close();
+        system("dot -Tpng grafica_Pasajeros.dot -o grafica_Pasajeros.png");
+        system("open grafica_Pasajeros.png");
+    }
+    
+
+};
+
+
 
 Cola::~Cola()
 {

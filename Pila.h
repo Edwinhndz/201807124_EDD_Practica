@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "NodoPila.h"
+#include <fstream>
 using namespace std;
 
 class Pila
@@ -23,6 +24,7 @@ public:
     void eliminarFinal();
     void visualizarLista();
     int getSize();
+    void generarReporte();
     ~Pila();
 };
 
@@ -151,6 +153,70 @@ void Pila::visualizarLista()
 int Pila::getSize()
 {
     return size;
+};
+
+void Pila::generarReporte(){
+    if (Pila::estaVacia()){
+        cout << "La lista está vacía no se genera reporte" << endl;
+        return;
+    }
+    else
+    {
+        ofstream archivo; //
+        archivo.open("grafica_Pila.dot", ios::out);
+        archivo << "digraph G { " << endl << "rankdir = TB;" << endl << "label=\"Pila\";" << "bgcolor=grey "<< endl 
+        <<"subgraph cluster_top_floor{" << endl << "bgcolor=wheat; " << endl;
+        archivo << "label=\"Equipaje\";"<< endl;
+
+        string nodoDato;
+        Nodop *actual = primero;
+        int conteo = 0;
+
+        do
+        {   
+            //cout << getSize() << endl;
+            nodoDato = actual->getNombre();
+            archivo <<"nodo"<< conteo << "[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label=\"Nombre: " <<nodoDato << ", Pasaporte:" 
+            << actual->getPasaporte() << " Equipaje:" << actual->getEquipaje() << " Asiento:" << actual->getAsiento() 
+            << " Nacionalidad:" << actual->getNacionalidad()<< " Origen:" << actual->getOrigen() << " Destino:"<< actual->getDestino() << "\"]" <<endl;
+            //archivo << " -> ";
+            actual = actual->getSiguiente();
+            
+            conteo++;
+        } while (conteo != size);
+
+        int sizee = 0;
+
+        //  do{
+
+        //     //cout << "do2 " << endl;
+        //     if(sizee == size){
+        //         //archivo << "nodo" << sizee  << " -> ";
+        //     }else{
+        //         archivo << "nodo" << sizee << " -> ";
+        //     }
+        //     sizee--;
+        // }while(sizee != 0);
+        do{
+
+            //cout << "do2 " << endl;
+
+            if(sizee == size -1){
+                archivo << "nodo" << sizee;
+            }else{
+
+                archivo << "nodo" << sizee << " -> ";
+            }
+            sizee++;
+        }while(size != sizee);
+
+        archivo << ";" << endl <<"}" << endl << "}";
+        archivo.close();
+        system("dot -Tpng grafica_Pila.dot -o grafica_Pila.png");
+        system("open grafica_Pila.png");
+    }
+    
+
 };
 
 Pila::~Pila(){

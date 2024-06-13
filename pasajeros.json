@@ -4,20 +4,20 @@
         "nacionalidad": "Estados Unidos",
         "numero_de_pasaporte": "P12345678",
         "vuelo": "A100",
-        "asiento": 12,
+        "asiento": 2,
         "destino": "New York",
         "origen": "Los Angeles",
         "equipaje_facturado": 2
     },
     {
-        "nombre": "Jane Smith",
-        "nacionalidad": "Reino Unido",
+        "nombre": "Juan Perez",
+        "nacionalidad": "Mexico",
         "numero_de_pasaporte": "P98765432",
-        "vuelo": "A200",
-        "asiento": 5,
-        "destino": "Londres",
-        "origen": "Paris",
-        "equipaje_facturado": 1
+        "vuelo": "A100",
+        "asiento": 1,
+        "destino": "Cancun",
+        "origen": "San Francisco",
+        "equipaje_facturado": 2
     },
     {
         "nombre": "Carlos Rodríguez",
@@ -47,16 +47,16 @@
         "asiento": 1,
         "destino": "Dubai",
         "origen": "New York",
-        "equipaje_facturado": 3
+        "equipaje_facturado": 35
     },
     {
-        "nombre": "Juan Perez",
-        "nacionalidad": "Mexico",
+        "nombre": "Paco Barrios",
+        "nacionalidad": "Guatemala",
         "numero_de_pasaporte": "P13579246",
         "vuelo": "A300",
         "asiento": 15,
         "destino": "Cancun",
-        "origen": "Mexico City",
+        "origen": "Guatemala City",
         "equipaje_facturado": 2
     },
     {
@@ -68,5 +68,25 @@
         "destino": "Madrid",
         "origen": "Barcelona",
         "equipaje_facturado": 0
+    },
+    {
+        "nombre": "Jane Smith",
+        "nacionalidad": "Reino Unido",
+        "numero_de_pasaporte": "P98765432",
+        "vuelo": "A200",
+        "asiento": 5,
+        "destino": "Londres",
+        "origen": "Paris",
+        "equipaje_facturado": 1
+    },
+    {
+        "nombre": "Josue Hernandez",
+        "nacionalidad": "Estados Unidos",
+        "numero_de_pasaporte": "A12345678",
+        "vuelo": "A300",
+        "asiento": 12,
+        "destino": "Nueva York",
+        "origen": "Tokio",
+        "equipaje_facturado": 1
     }
 ]

@@ -1,0 +1,11 @@
+digraph G { 
+rankdir = LR;
+label="Lista Enlazada";bgcolor=grey 
+subgraph cluster_top_floor{
+bgcolor=wheat; 
+label="Pasajero Buscado";
+nodo[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label="Nombre: Maria Lopez, Pasaporte:P24681357"]
+nodo
+;
+}
+}

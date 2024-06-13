@@ -1,2 +1,11 @@
-digraph G { rankdir = LR; 
-1 -> 2 -> 2 -> 1; }
+digraph G { 
+rankdir = LR;
+label="Lista Circular";bgcolor=grey 
+subgraph cluster_top_floor{
+bgcolor=wheat; 
+label="Aviones Disponibles";
+nodo0[ shape=octagon , fontcolor=aliceblue , style=filled,color=teal, label=" 0. Registro: N67890, Estado: Disponible"]
+nodo1[ shape=octagon , fontcolor=aliceblue , style=filled,color=teal, label=" 1. Registro: N13579, Estado: disponible"]
+nodo0 -> nodo1 -> nodo0;
+}
+}

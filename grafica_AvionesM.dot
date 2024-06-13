@@ -1,0 +1,12 @@
+digraph G { 
+rankdir = LR;
+label="Lista Circular";bgcolor=grey 
+subgraph cluster_top_floor{
+bgcolor=wheat; 
+label="Aviones en Mantenimiento";
+nodo0[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N24680, Estado: Mantenimiento"]
+nodo1[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N12345, Estado: mantenimiento"]
+nodo2[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N54321, Estado: mantenimiento"]
+nodo0 -> nodo1 -> nodo2 -> nodo0;
+}
+}
