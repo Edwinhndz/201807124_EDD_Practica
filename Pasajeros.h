@@ -245,9 +245,9 @@ void Cola::generarReporte(){
     {
         ofstream archivo; //
         archivo.open("grafica_Pasajeros.dot", ios::out);
-        archivo << "digraph G { " << endl << "rankdir = LR;" << endl << "label=\"Enlazada \";" << "bgcolor=grey "<< endl 
+        archivo << "digraph G { " << endl << "rankdir = LR;" << endl << "label=\"Cola\";" << "bgcolor=grey "<< endl 
         <<"subgraph cluster_top_floor{" << endl << "bgcolor=wheat; " << endl;
-        archivo << "label=\"Pasajeros\";"<< endl;
+        archivo << "label=\"Pasajeros en cola\";"<< endl;
 
         string nodoDato;
         Nodo *actual = primero;
@@ -257,9 +257,9 @@ void Cola::generarReporte(){
         {   
             //cout << getSize() << endl;
             nodoDato = actual->getNombre();
-            archivo <<"nodo"<< conteo << "[ shape=component , fontcolor=aliceblue , style=filled , color=indianred , label=\"Nombre: " <<nodoDato << ", Pasaporte:" 
-            << actual->getPasaporte() << " Equipaje:" << actual->getEquipaje() << " Asiento:" << actual->getAsiento() 
-            << " Nacionalidad:" << actual->getNacionalidad()<< " Origen:" << actual->getOrigen() << " Destino:"<< actual->getDestino() << "\"]" <<endl;
+            archivo <<"nodo"<< conteo << "[ shape=component , fontcolor=aliceblue , style=filled , color=indianred , label=\"Nombre: " <<nodoDato << "\nPasaporte:" 
+            << actual->getPasaporte() << "\nEquipaje:" << actual->getEquipaje() << "\nAsiento:" << actual->getAsiento() 
+            << "\nNacionalidad:" << actual->getNacionalidad()<< "\nOrigen:" << actual->getOrigen() << "\nDestino:"<< actual->getDestino() << "\"]" <<endl;
             //archivo << " -> ";
             actual = actual->getSiguiente();
             

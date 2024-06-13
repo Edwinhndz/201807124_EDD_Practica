@@ -4,8 +4,16 @@ label="Lista Circular";bgcolor=grey
 subgraph cluster_top_floor{
 bgcolor=wheat; 
 label="Aviones Disponibles";
-nodo0[ shape=octagon , fontcolor=aliceblue , style=filled,color=teal, label=" 0. Registro: N67890, Estado: Disponible"]
-nodo1[ shape=octagon , fontcolor=aliceblue , style=filled,color=teal, label=" 1. Registro: N13579, Estado: disponible"]
+nodo0[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N67890
+Estado: Disponible
+Vuelo:A104
+Modelo:Boeing 787
+Anio: 2020"]
+nodo1[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N13579
+Estado: disponible
+Vuelo:A106
+Modelo:Boeing 777
+Anio: 2012"]
 nodo0 -> nodo1 -> nodo0;
 }
 }

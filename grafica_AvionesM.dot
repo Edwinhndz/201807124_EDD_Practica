@@ -4,9 +4,21 @@ label="Lista Circular";bgcolor=grey
 subgraph cluster_top_floor{
 bgcolor=wheat; 
 label="Aviones en Mantenimiento";
-nodo0[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N24680, Estado: Mantenimiento"]
-nodo1[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N12345, Estado: mantenimiento"]
-nodo2[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N54321, Estado: mantenimiento"]
+nodo0[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N24680
+Estado: Mantenimiento
+Vuelo:A108
+Modelo:Airbus A380
+Anio: 2010"]
+nodo1[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N12345
+Estado: mantenimiento
+Vuelo:A100
+Modelo:Boeing 737
+Anio: 2015"]
+nodo2[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label="Registro: N54321
+Estado: mantenimiento
+Vuelo:A102
+Modelo:Airbus A320
+Anio: 2018"]
 nodo0 -> nodo1 -> nodo2 -> nodo0;
 }
 }

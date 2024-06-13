@@ -4,10 +4,34 @@ label="Pila";bgcolor=grey
 subgraph cluster_top_floor{
 bgcolor=wheat; 
 label="Equipaje";
-nodo0[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label="Nombre: Ahmed Al-Farsi, Pasaporte:P34567890 Equipaje:35 Asiento:1 Nacionalidad:Emiratos Arabes Unidos Origen:New York Destino:Dubai"]
-nodo1[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label="Nombre: Liu Wei, Pasaporte:P23456789 Equipaje:1 Asiento:8 Nacionalidad:China Origen:San Francisco Destino:Beijing"]
-nodo2[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label="Nombre: Juan Perez, Pasaporte:P98765432 Equipaje:2 Asiento:1 Nacionalidad:Mexico Origen:San Francisco Destino:Cancun"]
-nodo3[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label="Nombre: John Doe, Pasaporte:P12345678 Equipaje:2 Asiento:2 Nacionalidad:Estados Unidos Origen:Los Angeles Destino:New York"]
+nodo0[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label="Nombre: Ahmed Al-Farsi
+Pasaporte:P34567890
+Equipaje:35
+Asiento:1
+Nacionalidad:Emiratos Arabes Unidos
+Origen:New York
+Destino:Dubai"]
+nodo1[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label="Nombre: Liu Wei
+Pasaporte:P23456789
+Equipaje:1
+Asiento:8
+Nacionalidad:China
+Origen:San Francisco
+Destino:Beijing"]
+nodo2[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label="Nombre: Juan Perez
+Pasaporte:P98765432
+Equipaje:2
+Asiento:1
+Nacionalidad:Mexico
+Origen:San Francisco
+Destino:Cancun"]
+nodo3[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label="Nombre: John Doe
+Pasaporte:P12345678
+Equipaje:2
+Asiento:2
+Nacionalidad:Estados Unidos
+Origen:Los Angeles
+Destino:New York"]
 nodo0 -> nodo1 -> nodo2 -> nodo3;
 }
 }

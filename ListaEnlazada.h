@@ -391,8 +391,9 @@ void Enlazada::generarReporte(){
         {   
             //cout << getSize() << endl;
             nodoDato = actual->getNombre();
-            archivo <<"nodo"<< conteo << "[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label=\"Nombre: " <<nodoDato << ", Pasaporte:" 
-            << actual->getPasaporte() << "\"]" <<endl;
+            archivo <<"nodo"<< conteo << "[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label=\"Nombre: " <<nodoDato 
+            << "\n Pasaporte:" << actual->getPasaporte() << "\n Vuelo:" << actual->getVuelo()
+            << "\n Destino: "<< actual->getDestino() << "\n Origen:" << actual->getOrigen() << "\"]" <<endl;
             //archivo << " -> ";
             actual = actual->getSiguiente();
             
@@ -463,8 +464,9 @@ void Enlazada::generarReporte2(Nodo2 info){
 
       
   
-        archivo <<"nodo[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label=\"Nombre: " << info.getNombre() << ", Pasaporte:" 
-        << info.getPasaporte() << "\"]" <<endl;
+        archivo <<"nodo[ shape=cds , fontcolor=aliceblue , style=filled , color=chocolate , label=\"Nombre: " << info.getNombre() << "\n Pasaporte:" 
+        << info.getPasaporte() <<"\n Vuelo:" << info.getVuelo() << "\n Destino:" << info.getDestino()
+        << "\n Origen:" << info.getOrigen() << "\"]" <<endl;
         
         archivo << "nodo" << endl;
         archivo << ";" << endl <<"}" << endl << "}";

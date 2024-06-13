@@ -176,9 +176,9 @@ void Pila::generarReporte(){
         {   
             //cout << getSize() << endl;
             nodoDato = actual->getNombre();
-            archivo <<"nodo"<< conteo << "[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label=\"Nombre: " <<nodoDato << ", Pasaporte:" 
-            << actual->getPasaporte() << " Equipaje:" << actual->getEquipaje() << " Asiento:" << actual->getAsiento() 
-            << " Nacionalidad:" << actual->getNacionalidad()<< " Origen:" << actual->getOrigen() << " Destino:"<< actual->getDestino() << "\"]" <<endl;
+            archivo <<"nodo"<< conteo << "[ shape=box3d  , fontcolor=aliceblue , style=filled , color=dodgerblue , label=\"Nombre: " <<nodoDato << "\nPasaporte:" 
+            << actual->getPasaporte() << "\nEquipaje:" << actual->getEquipaje() << "\nAsiento:" << actual->getAsiento() 
+            << "\nNacionalidad:" << actual->getNacionalidad()<< "\nOrigen:" << actual->getOrigen() << "\nDestino:"<< actual->getDestino() << "\"]" <<endl;
             //archivo << " -> ";
             actual = actual->getSiguiente();
             

@@ -366,8 +366,9 @@ void ListaCircular::generarReporte(){
         do
         {   
             nodoDato = actual->getRegistro();
-            archivo <<"nodo"<< conteo << "[ shape=octagon , fontcolor=aliceblue , style=filled,color=teal, label=\" " << conteo << ". Registro: " << nodoDato << ", Estado: " << actual->getEstado() << "\"]" <<endl;
-     
+            archivo <<"nodo"<< conteo << "[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label=\"Registro: " <<nodoDato 
+            << "\nEstado: " << actual->getEstado() << "\nVuelo:" << actual->getVuelo() << "\nModelo:" << actual->getModelo() 
+            << "\nAnio: " << actual->getAnio() << "\"]" <<endl;
             actual = actual->getSiguiente();
             
             conteo++;
@@ -410,7 +411,9 @@ void ListaCircular::generarReporte2(){
         {   
             //cout << "do 3" << endl;
             nodoDato = actual->getRegistro();
-            archivo <<"nodo"<< conteo << "[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label=\"Registro: " <<nodoDato << ", Estado: " << actual->getEstado() << "\"]" <<endl;
+            archivo <<"nodo"<< conteo << "[ shape=octagon, fontcolor=aliceblue , style=filled,color=teal, label=\"Registro: " <<nodoDato 
+            << "\nEstado: " << actual->getEstado() << "\nVuelo:" << actual->getVuelo() << "\nModelo:" << actual->getModelo() 
+            << "\nAnio: " << actual->getAnio() << "\"]" <<endl;
             //archivo << " -> ";
             actual = actual->getSiguiente();
             

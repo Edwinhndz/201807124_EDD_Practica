@@ -253,7 +253,7 @@ void Pasajero(string a, Enlazada *enlazada){
         cout << "nombre: " << pasa.getNombre() << " Asiento:" << pasa.getAsiento() << " Vuelo: " << pasa.getVuelo() << endl;
         enlazada->generarReporte2(pasa);
         }
-}
+};
 int main()
 {
     int choice;
@@ -298,6 +298,7 @@ int main()
             cout << "Ingrese el nombre del archivo de pasajeros: ";
             cin >> pasajerosss;
             CargaPasajeros(cola, enlazada, pasajerosss);
+            enlazada->ordenar();
             break;
         case 3:
             // Code for option 3
